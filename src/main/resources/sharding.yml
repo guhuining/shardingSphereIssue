@@ -1,0 +1,28 @@
+rules:
+  - !SHARDING
+    tables:
+      test_:
+        actualDataNodes: sharding_test.test_$->{0..4}
+        tableStrategy:
+          standard:
+            shardingColumn: id
+            shardingAlgorithmName: ModAlgorithm
+      test_hint_:
+        actualDataNodes: sharding_test.test_$->{0..4}
+        tableStrategy:
+          hint:
+            shardingAlgorithmName: HintAlgorithm
+      # Algorithm
+    shardingAlgorithms:
+      ModAlgorithm:
+        type: CLASS_BASED
+        props:
+          strategy: standard
+          algorithmClassName: com.demo.ModAlgorithm
+      HintAlgorithm:
+        type: CLASS_BASED
+        props:
+          strategy: hint
+          algorithmClassName: com.demo.HintAlgorithm
+props:
+  sql-show: true
