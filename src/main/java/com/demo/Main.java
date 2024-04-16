@@ -24,7 +24,7 @@ public class Main {
                 .executeQuery();
 
         try (HintManager hintManager = HintManager.getInstance()) {
-            hintManager.addTableShardingValue("test_hint_", 1);
+            hintManager.addTableShardingValue("test_hint_", 2);
             ds.getConnection()
                     .prepareStatement("SELECT * FROM test_hint_")
                     .executeQuery();
